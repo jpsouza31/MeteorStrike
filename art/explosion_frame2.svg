@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <radialGradient id="coreGrad2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="30%" stop-color="#FFE000" stop-opacity="0.7"/>
+      <stop offset="65%" stop-color="#FF6600" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#FF2200" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="smokeGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#994400" stop-opacity="0.5"/>
+      <stop offset="50%" stop-color="#662200" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#330000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur2" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <filter id="glow2" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Wide smoke cloud - dissipating -->
+  <ellipse cx="50" cy="50" rx="46" ry="44" fill="#662200" opacity="0.22" filter="url(#blur2)"/>
+  <ellipse cx="46" cy="48" rx="36" ry="32" fill="#884400" opacity="0.18" filter="url(#blur2)"/>
+  <ellipse cx="54" cy="52" rx="34" ry="30" fill="#773300" opacity="0.15" filter="url(#blur2)"/>
+
+  <!-- Outer expanded spikes - longer, more faded -->
+  <polygon points="50,50 42,10 48,24 54,10" fill="#FF4400" opacity="0.5"/>
+  <polygon points="50,50 78,16 70,28 82,22" fill="#FF5500" opacity="0.45"/>
+  <polygon points="50,50 90,34 78,42 92,46" fill="#FF4400" opacity="0.5"/>
+  <polygon points="50,50 88,68 76,62 86,72" fill="#FF5500" opacity="0.45"/>
+  <polygon points="50,50 62,88 56,74 66,86" fill="#FF4400" opacity="0.5"/>
+  <polygon points="50,50 34,88 40,74 30,84" fill="#FF5500" opacity="0.45"/>
+  <polygon points="50,50 12,66 24,58 10,54" fill="#FF4400" opacity="0.5"/>
+  <polygon points="50,50 14,32 26,42 12,36" fill="#FF5500" opacity="0.45"/>
+
+  <!-- Rock debris - further away, fading -->
+  <polygon points="30,10 38,6 40,16 32,18" fill="#7A4F2E" opacity="0.7"/>
+  <polygon points="74,12 82,16 78,24 70,20" fill="#6A3F1E" opacity="0.65"/>
+  <polygon points="88,60 94,54 96,64 90,68" fill="#7A4F2E" opacity="0.7"/>
+  <polygon points="10,62 6,54 16,52 18,60" fill="#6A3F1E" opacity="0.65"/>
+  <polygon points="58,90 66,86 68,94 60,96" fill="#7A4F2E" opacity="0.65"/>
+  <polygon points="18,24 12,32 20,36 26,28" fill="#6A3F1E" opacity="0.6"/>
+  <!-- Extra small chunks -->
+  <polygon points="84,30 90,28 90,36 84,36" fill="#7A4F2E" opacity="0.6"/>
+  <polygon points="8,46 4,40 12,40 12,46" fill="#6A3F1E" opacity="0.55"/>
+
+  <!-- Sparks - spread further out -->
+  <circle cx="42" cy="8" r="2" fill="#FFE000" opacity="0.7"/>
+  <circle cx="82" cy="26" r="1.5" fill="#FFFFFF" opacity="0.65"/>
+  <circle cx="90" cy="64" r="2" fill="#FFE000" opacity="0.65"/>
+  <circle cx="22" cy="76" r="1.5" fill="#FFFFFF" opacity="0.6"/>
+  <circle cx="10" cy="48" r="2" fill="#FFE000" opacity="0.65"/>
+  <circle cx="64" cy="92" r="1.5" fill="#FFFFFF" opacity="0.6"/>
+  <circle cx="88" cy="40" r="1.5" fill="#FFD700" opacity="0.6"/>
+  <circle cx="16" cy="32" r="1.5" fill="#FFD700" opacity="0.6"/>
+
+  <!-- Fading smoke blobs -->
+  <ellipse cx="50" cy="50" rx="38" ry="36" fill="url(#smokeGrad)" filter="url(#glow2)"/>
+
+  <!-- Dimmer core, mostly faded -->
+  <ellipse cx="50" cy="50" rx="22" ry="20" fill="url(#coreGrad2)" filter="url(#glow2)"/>
+
+  <!-- Faint center glow -->
+  <ellipse cx="50" cy="50" rx="8" ry="7" fill="#FFE000" opacity="0.35"/>
+</svg>

@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://de03f7wjnqy7l"]
+
+[ext_resource type="Script" uid="uid://brqtm2iqskw3x" path="res://Meteor.cs" id="1_cuc0a"]
+[ext_resource type="Texture2D" uid="uid://bk8ibdbmqrdf5" path="res://art/meteor_frame1.svg" id="1_xunib"]
+[ext_resource type="Texture2D" uid="uid://7n6cfb66kvc4" path="res://art/meteor_frame2.svg" id="2_cuc0a"]
+[ext_resource type="Texture2D" uid="uid://hu43wimfmo5" path="res://art/meteor_frame3.svg" id="3_yfp5j"]
+[ext_resource type="Texture2D" path="res://art/explosion_frame1.svg" id="4_expl1"]
+[ext_resource type="Texture2D" path="res://art/explosion_frame2.svg" id="5_expl2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yxpia"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_expl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_expl2")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xunib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cuc0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yfp5j")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o8pv2"]
+radius = 24.083189
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=1406908382]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_cuc0a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1274287428]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_yxpia")
+animation = &"spin"
+frame_progress = 0.9075
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2045012047]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_o8pv2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=267818906]
+position = Vector2(-1, -1)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="OnVisibleOnScreenNotifier2DScreenExited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimatedSprite2DAnimationFinished"]

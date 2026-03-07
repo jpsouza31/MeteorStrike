@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://clpg2xasfwawy"]
+
+[ext_resource type="Script" uid="uid://26oammcyudlb" path="res://Main.cs" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://de03f7wjnqy7l" path="res://meteor.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dglslfj16gs36" path="res://ship.tscn" id="3_lquwl"]
+[ext_resource type="PackedScene" path="res://missile.tscn" id="4_missile"]
+
+[sub_resource type="Curve2D" id="Curve2D_7mycd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 720, 480)
+}
+point_count = 2
+
+[node name="Main" type="Node2D" unique_id=663154266]
+script = ExtResource("1_h2yge")
+MobScene = ExtResource("2_1bvp3")
+
+[node name="Ship" parent="." unique_id=311878203 instance=ExtResource("3_lquwl")]
+MissileScene = ExtResource("4_missile")
+
+[node name="MeteorTimer" type="Timer" parent="." unique_id=10125251]
+wait_time = 0.5
+
+[node name="StartTimer" type="Timer" parent="." unique_id=607067443]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="." unique_id=756329039]
+position = Vector2(50, 240)
+
+[node name="MeteorPath" type="Path2D" parent="." unique_id=1734107680]
+curve = SubResource("Curve2D_7mycd")
+
+[node name="MeteorSpawnLocation" type="PathFollow2D" parent="MeteorPath" unique_id=2043650315]
+position = Vector2(720, 0)
+rotation = 1.5707964
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 200.0
+offset_bottom = 40.0
+text = "Score: 0"
+theme_override_font_sizes/font_size = 24
+
+[node name="GameOverLabel" type="Label" parent="HUD"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -30.0
+offset_right = 100.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="Hit" from="Ship" to="." method="GameOver"]
+[connection signal="timeout" from="MeteorTimer" to="." method="OnMeteorTimerTimeout"]
+[connection signal="timeout" from="StartTimer" to="." method="OnStartTimerTimeout"]

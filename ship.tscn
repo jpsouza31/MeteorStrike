@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dglslfj16gs36"]
+
+[ext_resource type="Texture2D" uid="uid://clps3duhmosv8" path="res://art/spaceship_1.svg" id="1_4cq66"]
+[ext_resource type="Script" uid="uid://q0w4434qciwg" path="res://Ship.cs" id="1_v4325"]
+[ext_resource type="Texture2D" uid="uid://cm01l47kshosm" path="res://art/spaceship_2.svg" id="2_v4325"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c3vuw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4cq66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_v4325")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4cq66"]
+radius = 19.0
+height = 70.0
+
+[node name="Ship" type="Area2D" unique_id=311878203]
+script = ExtResource("1_v4325")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1754729241]
+rotation = 1.5707964
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_c3vuw")
+animation = &"moving"
+frame_progress = 0.52481794
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1923586233]
+position = Vector2(16, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_4cq66")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
