@@ -10,7 +10,7 @@ Você está a bordo de uma nave espacial tentando retornar à Terra, mas uma chu
 
 ## Demo
 
-https://github.com/jpsouza31/MeteorStrike/raw/master/MeteorStrike.mp4
+![Demo](MeteorStrike.gif)
 
 ## Controles
 
