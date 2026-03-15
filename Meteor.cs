@@ -15,7 +15,6 @@ public partial class Meteor : RigidBody2D
     public void Explode()
     {
         EmitSignal(SignalName.Exploded);
-        // Stop movement and disable collision so it doesn't hit the ship
         LinearVelocity = Vector2.Zero;
         GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 

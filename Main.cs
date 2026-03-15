@@ -49,39 +49,29 @@ public partial class Main : Node
 		GetNode<Label>("HUD/ScoreLabel").Text = "Score: " + _score;
 	}
 
-	// We also specified this function name in PascalCase in the editor's connection window.
 	private void OnStartTimerTimeout()
 	{
 		GetNode<Timer>("MeteorTimer").Start();
 	}
 
-	// We also specified this function name in PascalCase in the editor's connection window.
 	private void OnMeteorTimerTimeout()
 	{
-		// Create a new instance of the Mob scene.
 		Meteor meteor = MobScene.Instantiate<Meteor>();
-
-		// Choose a random location on Path2D.
 		var meteorSpawnLocation = GetNode<PathFollow2D>("MeteorPath/MeteorSpawnLocation");
 		meteorSpawnLocation.ProgressRatio = GD.Randf();
 
-		// Set the mob's direction perpendicular to the path direction.
 		float direction = Mathf.Pi;
 		direction += (float)GD.RandRange(-Mathf.Pi / 6, Mathf.Pi / 6);
 
-		// Set the mob's position to a random location.
 		meteor.Position = meteorSpawnLocation.Position;
 
 		meteor.Rotation = direction;
 
-		// Choose the velocity.
 		Vector2 velocity = new Vector2((float)GD.RandRange(150.0, 250.0), 0);
 		meteor.LinearVelocity = velocity.Rotated(direction);
 
-		// Connect exploded signal for score tracking.
 		meteor.Exploded += OnMeteorExploded;
 
-		// Spawn the mob by adding it to the Main scene.
 		AddChild(meteor);
 	}
 }
